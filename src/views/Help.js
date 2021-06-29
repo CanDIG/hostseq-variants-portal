@@ -13,11 +13,13 @@ function Help() {
 
         <div className="card-columns">
 
-        <Card className="m-6">
+          <Card className="m-6">
             <CardBody>
               <h5 className="card-title">Example Scenarios</h5>
-              <b className="card-subtitle mb-2">I want to find out if an SNP exists at
-              position 92311 on chromosome 5.</b>
+              <b className="card-subtitle mb-2">
+                I want to find out if an SNP exists at
+                position 92311 on chromosome 5.
+              </b>
               <p className="card-text">
                 To check if an SNP exists at position 92311 on 5, first, select 5 from the chromosome
                 dropdown, then put 92311 into both start and end. The server will return all variants that
@@ -31,7 +33,6 @@ function Help() {
               </p>
             </CardBody>
           </Card>
-
 
           <Card className="m-6">
             <CardBody>
@@ -75,12 +76,12 @@ function Help() {
               <h5 className="card-title">Terminolgies</h5>
               <b className="card-subtitle mb-2">Internal Frequency</b>
               <p className="card-text">
-              Internal frequencies indicate the prevalence of alleles in our dataset, rounded up to the nearest 10 percent. 
+                Internal frequencies indicate the prevalence of alleles in our dataset, rounded up to the nearest 10 percent.
               </p>
 
               <b className="card-subtitle mb-2">Position</b>
               <p className="card-text">
-              The 1-based position of the variant, aligned to genome reference GRCh38 (hg38).
+                The 1-based position of the variant, aligned to genome reference GRCh38 (hg38).
               </p>
             </CardBody>
           </Card>

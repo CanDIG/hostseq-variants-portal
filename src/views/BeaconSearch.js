@@ -24,6 +24,7 @@ function BeaconSearch() {
   const [activeColumnDefs, setActiveColumnDefs] = useState([]);
   const [loadingIndicator, setLoadingIndicator] = useState('');
   const [displayBeaconTable, setDisplayBeaconTable] = useState(false);
+  const [overviewMsg, setOverviewMsg] = useState('');
   // const [variantSet, setVariantSets] = useState('');
   const [referenceSetName, setReferenceSetName] = useState('');
   const requestModeFunc = { range: searchBeaconRange, freq: searchBeaconFreq };
@@ -44,6 +45,7 @@ function BeaconSearch() {
   useEffect(() => {
     // Hide BeaconTable when datasetId changes
     setDisplayBeaconTable(false);
+    setOverviewMsg('');
 
     // Check for variant and reference name set on datasetId changes
     trackPromise(
@@ -193,7 +195,7 @@ function BeaconSearch() {
                       )}
                       <p /> */}
                       <p style={{ fontSize: '14px' }}>
-                        
+                        { overviewMsg }
                       </p>
                     </div>
                   </Col>
