@@ -254,7 +254,7 @@ function BeaconSearch() {
               <Label for="end">End</Label>
               <Input required type="number" id="end" min="1" />
               <FormText className="text-muted">
-                Cannot be smaller than start.
+                The maximum search range is 5000 bps.
               </FormText>
             </FormGroup>
           </Row>

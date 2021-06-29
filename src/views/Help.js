@@ -17,11 +17,11 @@ function Help() {
             <CardBody>
               <h5 className="card-title">Example Scenarios</h5>
               <b className="card-subtitle mb-2">
-                I want to find out if an SNP exists at
+                I want to find out if a SNP exists at
                 position 92311 on chromosome 5.
               </b>
               <p className="card-text">
-                To check if an SNP exists at position 92311 on 5, first, select 5 from the chromosome
+                To check if a SNP exists at position 92311 on 5, first, select 5 from the chromosome
                 dropdown, then put 92311 into both start and end. The server will return all variants that
                 have a presence at this position. In most cases, it would be an SNP, sometimes it would be short indels.
               </p>
