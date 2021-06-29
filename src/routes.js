@@ -32,7 +32,7 @@ const routes = [
   {
     path: '/help',
     name: 'Help',
-    icon: 'nc-icon nc-bank',
+    icon: 'nc-icon nc-alert-circle-i',
     component: Help,
     layout: '/dashboard',
   },
