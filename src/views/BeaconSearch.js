@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import {
-  Row, Button, Form, FormText, FormGroup, Label, Input, UncontrolledPopover, PopoverHeader, PopoverBody,
+  Row, Button, Form, FormText, FormGroup, Label, Input,
+  Col, Card, CardBody,
 } from 'reactstrap';
 import {
   searchBeaconFreq, searchBeaconRange, searchVariantSets, getReferenceSet,
@@ -123,7 +124,7 @@ function BeaconSearch() {
     }
 
     if (Number(end) < Number(start) + 1) {
-      notificationHandler('The minimum value of End is Start + 1.', 'warning');
+      notificationHandler('End cannot be smaller than start.', 'warning');
       setDisplayBeaconTable(false);
       return false;
     }
@@ -133,8 +134,8 @@ function BeaconSearch() {
 
   const formHandler = (e) => {
     e.preventDefault(); // Prevent form submission
-    const mode = e.target.requestMode.value;
-    const start = e.target.start.value;
+    const mode = 'freq';
+    const start = e.target.start.value - 1;
     const end = e.target.end.value;
 
     if (validateForm(start, end) === false) {
@@ -157,11 +158,12 @@ function BeaconSearch() {
           setDisplayBeaconTable(true);
         } else {
           setDisplayBeaconTable(false);
+          setLoadingIndicator('❌ No variants were found.');
           notificationHandler('No variants were found.', 'warning');
         }
       }).catch(() => {
         setDisplayBeaconTable(false);
-        setLoadingIndicator('');
+        setLoadingIndicator('No variants were found.');
         setRowData([]);
         notificationHandler('No variants were found.', 'warning');
       });
@@ -171,32 +173,35 @@ function BeaconSearch() {
     <>
       <div className="content">
         <NotificationAlert ref={notifyEl} />
-        {/* <Row className="justify-content-md-center">
-          <Col lg="4" md="4" sm="4">
+        <Row className="justify-content-md-center" style={{ marginBottom: '30px' }}>
+          <Col lg="5" md="5" sm="5">
             <Card className="card-stats">
               <CardBody>
                 <Row>
-                  <Col md="4" xs="5">
+                  <Col md="4" xs="3">
                     <div className="icon-big text-center icon-warning">
                       <i className="nc-icon nc-paper text-danger" />
                     </div>
                   </Col>
-                  <Col md="8" xs="7">
+                  <Col md="8" xs="9">
                     <div className="numbers">
-                      <p className="card-category">VariantSets/VCFs</p>
-                      {promiseInProgress === true ? (
+                      <p className="card-category">Overview</p>
+                      {/* {promiseInProgress === true ? (
                         <LoadingIndicator />
                       ) : (
                         <CardTitle tag="p">{variantSet}</CardTitle>
                       )}
-                      <p />
+                      <p /> */}
+                      <p style={{ fontSize: '14px' }}>
+                        
+                      </p>
                     </div>
                   </Col>
                 </Row>
               </CardBody>
             </Card>
           </Col>
-          <Col lg="4" md="4" sm="4">
+          {/* <Col lg="4" md="4" sm="4">
             <Card className="card-stats">
               <CardBody>
                 <Row>
@@ -219,8 +224,8 @@ function BeaconSearch() {
                 </Row>
               </CardBody>
             </Card>
-          </Col>
-        </Row> */}
+          </Col> */}
+        </Row>
         <Form onSubmit={formHandler} className="justify-content-center">
           <Row style={{ justifyContent: 'center' }}>
             <FormGroup>
@@ -231,73 +236,45 @@ function BeaconSearch() {
             </FormGroup>
 
             <FormGroup>
+              <Label for="referenceName">Chromosome</Label>
+              <Input required type="select" id="referenceName">{ refNameSelectBuilder() }</Input>
+            </FormGroup>
+
+            <FormGroup>
               <Label for="start" style={{ float: 'left' }}>Start</Label>
-              <Input required type="number" id="start" min="0" />
+              <Input required type="number" id="start" min="1" />
               <FormText className="text-muted">
-                Min value is 0.
+                Min value is 1.
               </FormText>
             </FormGroup>
 
             <FormGroup>
               <Label for="end">End</Label>
-              <Input required type="number" id="end" min="0" />
+              <Input required type="number" id="end" min="1" />
               <FormText className="text-muted">
-                Min value is start + 1.
+                Cannot be smaller than start.
               </FormText>
-            </FormGroup>
-
-            <FormGroup>
-              <Label for="referenceName">Chromosome</Label>
-              <Input required type="select" id="referenceName">{ refNameSelectBuilder() }</Input>
             </FormGroup>
           </Row>
 
           <Row style={{ justifyContent: 'center' }}>
-            <FormGroup>
+            {/* <FormGroup>
               <Label for="requestMode">Mode</Label>
-              <Input required type="select" id="requestMode">
+              <Input required type="select" id="requestMode" disabled>
                 {
                     [
                       <option key="freq" value="freq">Allele Frequency Search</option>,
-                      <option key="range" value="range">Range Search</option>,
                     ]
                   }
               </Input>
-            </FormGroup>
+            </FormGroup> */}
 
-            {/* Use <a> instead of Button to be Safari-compatible */}
-            <a href="#" tabIndex="0" id="PopoverFocus" > {/* eslint-disable-line */}
-              <Button color="info" style={{ marginRight: '10px', marginTop: '30px' }}>HELP</Button>
-            </a>
-            <UncontrolledPopover trigger="focus" placement="bottom" target="PopoverFocus">
-              <PopoverHeader>Beacon Search</PopoverHeader>
-              <PopoverBody>
-                <p>
-                  <b>Note: </b>
-                  Coordinates are 0-based.
-                </p>
-                <p>
-                  <b>Range search mode</b>
-                  {' '}
-                  returns variants above reporting threshold, if available.
-                </p>
-                <p>
-                  <b>Allele Frequency mode</b>
-                  {' '}
-                  returns allele frequency info of variants, if available.
-                </p>
-                <p>Each search is limited to 5,000 bps.</p>
-                <p>Each VariantSet is linked to a VCF file.</p>
-
-              </PopoverBody>
-            </UncontrolledPopover>
-
-            <Button style={{ marginTop: '30px' }}>Search</Button>
+            <Button color="info" style={{ marginTop: '30px' }}>Search</Button>
           </Row>
 
         </Form>
 
-        <Row style={{ marginTop: '50px' }}>
+        <Row style={{ marginTop: '20px' }}>
           <div className="ml-auto mr-auto">
             {loadingIndicator}
           </div>

@@ -12,74 +12,76 @@ function Help() {
       <div className="content">
 
         <div className="card-columns">
-          <Card className="m-3">
+
+        <Card className="m-6">
+            <CardBody>
+              <h5 className="card-title">Example Scenarios</h5>
+              <b className="card-subtitle mb-2">I want to find out if an SNP exists at
+              position 92311 on chromosome 5.</b>
+              <p className="card-text">
+                To check if an SNP exists at position 92311 on 5, first, select 5 from the chromosome
+                dropdown, then put 92311 into both start and end. The server will return all variants that
+                have a presence at this position. In most cases, it would be an SNP, sometimes it would be short indels.
+              </p>
+
+              <b className="card-subtitle mb-2">I want to get a list of variants from position 54,000 to 54,900 on Mitochondria genome.</b>
+              <p className="card-text">
+                To get a list of variants at this range, please select MT from the Chromosome dropdown, put 54000 as the start, and
+                54900 as the end. The server will return a list of variants in this range.
+              </p>
+            </CardBody>
+          </Card>
+
+
+          <Card className="m-6">
             <CardBody>
               <h5 className="card-title">FAQ</h5>
-              <h6 className="card-subtitle mb-2 text-muted">Why do some charts not load?</h6>
+              <b className="card-subtitle mb-2">What is the maximum range I could search for?</b>
               <p className="card-text">
-                Some of the datasets do not have data for certain fields, and corresponding charts will not load.
+                Currently, you are only allowed to search for up to 5,000 bps at a time.
               </p>
-              <h6 className="card-subtitle mb-2 text-muted">How do I view different datasets?</h6>
+
+              <b className="card-subtitle mb-2">
+                When I search with a range with start of 5000 and end of 5500, what variants will get returned?
+              </b>
               <p className="card-text">
-                You may change the selected dataset from the dropdown in the top-right corner.
+                The server will search for the range you provide, and any variants that have presence at any one nucleotide
+                within your search range will get returned.
               </p>
-              {/* <a href="#" className="card-link">Card link</a>
-            <a href="#" className="card-link">Another link</a> */}
-            </CardBody>
-          </Card>
-          <Card className="m-3">
-            <CardBody>
-              <h5 className="card-title">Overview</h5>
-              <h6 className="card-subtitle mb-2 text-muted">General information</h6>
+              <b className="card-subtitle mb-2">
+                Can I export the data?
+              </b>
               <p className="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Yes, you may click on the Download button, located at the top right corner of the table.
+                The result will be exported as a tsv file.
               </p>
-              <h6 className="card-subtitle mb-2 text-muted">How to do X?</h6>
+              <b className="card-subtitle mb-2">
+                How is the internal frequency rounded?
+              </b>
               <p className="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                We round up the internal frequency to the nearest 10%.
+              </p>
+              <b className="card-subtitle mb-2">
+                I have other questions that&apos;s not answered here.
+              </b>
+              <p className="card-text">
+                Please reach out to us at admin@example.ca
               </p>
             </CardBody>
           </Card>
-          <Card className="m-3">
+
+          <Card className="m-6">
             <CardBody>
-              <h5 className="card-title">Patient Overview</h5>
-              <h6 className="card-subtitle mb-2 text-muted">General information</h6>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-            </CardBody>
-          </Card>
-          <Card className="m-3">
-            <CardBody>
-              <h5 className="card-title">API Info</h5>
-              <h6 className="card-subtitle mb-2 text-muted">General information</h6>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-            </CardBody>
-          </Card>
-          <Card className="m-3">
-            <CardBody>
-              <h5 className="card-title">Variants Search</h5>
-              <h6 className="card-subtitle mb-2 text-muted">General information</h6>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-            </CardBody>
-          </Card>
-          <Card className="m-3">
-            <CardBody>
-              <h5 className="card-title">Beacon Search</h5>
-              <h6 className="card-subtitle mb-2 text-muted">General information</h6>
-              <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </CardBody>
-          </Card>
-          <Card className="m-3">
-            <CardBody>
-              <h5 className="card-title">Custom Visualization</h5>
-              <h6 className="card-subtitle mb-2 text-muted">General information</h6>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
-            </CardBody>
-          </Card>
-          <Card className="m-3">
-            <CardBody>
-              <h5 className="card-title">Clinical Metadata</h5>
-              <h6 className="card-subtitle mb-2 text-muted">General information</h6>
-              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+              <h5 className="card-title">Terminolgies</h5>
+              <b className="card-subtitle mb-2">Internal Frequency</b>
+              <p className="card-text">
+              Internal frequencies indicate the prevalence of alleles in our dataset, rounded up to the nearest 10 percent. 
+              </p>
+
+              <b className="card-subtitle mb-2">Position</b>
+              <p className="card-text">
+              The 1-based position of the variant, aligned to genome reference GRCh38 (hg38).
+              </p>
             </CardBody>
           </Card>
 

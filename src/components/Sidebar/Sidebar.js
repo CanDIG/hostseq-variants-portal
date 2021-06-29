@@ -20,6 +20,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
+import logo from "../../assets/img/hostseq_logo.png"
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
@@ -59,14 +60,14 @@ class Sidebar extends React.Component {
         <div className="logo">
           <a href="/" className="simple-text logo-mini">
             <div className="logo-img">
-              <img
-                src="https://www.distributedgenomics.ca/img/logo_only.png"
+              {/* <img
+                src={logo}
                 alt="react-logo"
-              />
+              /> */}
             </div>
           </a>
-          <a href="/" className="simple-text logo-normal">
-            Dashboard
+          <a href="/dashboard/beacon-search" className="simple-text logo-normal">
+            Variants Portal
           </a>
         </div>
         <div className="sidebar-wrapper" ref={this.sidebar}>
