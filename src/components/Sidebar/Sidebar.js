@@ -53,7 +53,7 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div
-        className="sidebar"
+        className="sidebar d-none"
         data-color={this.props.bgColor}
         data-active-color={this.props.activeColor}
       >

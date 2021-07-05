@@ -18,20 +18,23 @@
 
 */
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink as ReactLink } from "react-router-dom";
 import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
+  NavLink,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
   Container
 } from "reactstrap";
+
+
+import logo from "../../assets/img/hostseq_logo.png"
 
 import routes from "routes.js";
 
@@ -68,16 +71,7 @@ class Header extends React.Component {
       dropdownOpen: !this.state.dropdownOpen,
     });
   }
-  getBrand() {
-    let brandName = "Default Brand";
-    routes.map((prop, key) => {
-      if (window.location.href.indexOf(prop.layout + prop.path) !== -1) {
-        brandName = prop.name;
-      }
-      return null;
-    });
-    return brandName;
-  }
+
   openSidebar() {
     document.documentElement.classList.toggle("nav-open");
     this.sidebarToggle.current.classList.toggle("toggled");
@@ -107,6 +101,7 @@ class Header extends React.Component {
       this.sidebarToggle.current.classList.toggle("toggled");
     }
   }
+  
   render() {
     return (
       // add or remove classes depending if we are on full-screen-maps page or not
@@ -124,7 +119,7 @@ class Header extends React.Component {
               (this.state.color === "transparent" ? "navbar-transparent " : "")
         }
       >
-        <Container fluid>
+        <Container fluid className="d-flex justify-content-between">
           <div className="navbar-wrapper">
             <div className="navbar-toggle">
               <button
@@ -133,46 +128,77 @@ class Header extends React.Component {
                 className="navbar-toggler"
                 onClick={() => this.openSidebar()}
               >
-              
               </button>
             </div>
-            <NavbarBrand href="/">{this.getBrand()}</NavbarBrand>
+   
           </div>
+        
           <NavbarToggler onClick={this.toggle}/>
           <Collapse
             isOpen={this.state.isOpen}
             navbar
-            className="justify-content-end"
+            className="justify-content-between"
           >
-            <Nav>
-              {this.props.datasetVisible === true ? 
-                (<DatasetsDropdown updateState={this.props.updateState} />) :
-                <></> }
-              {/* Leaving this commented out for now */}
-              <Dropdown
-                nav
-                isOpen={this.state.dropdownOpen}
-                toggle={(e) => this.dropdownToggle(e)}
-              >
-                <DropdownToggle caret nav>
-                  <i className="nc-icon nc-bell-55" />
-                  <p>
-                    <span className="d-lg-none d-md-block">Account</span>
-                  </p>
-                </DropdownToggle>              
-                <DropdownMenu right>
-                  <DropdownItem href="/">Return to production dashboard</DropdownItem>
-                  <DropdownItem href="/auth/logout">Logout</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-              {/* <NavItem>
-                <Link to="#pablo" className="nav-link btn-rotate">
-                  <i className="nc-icon nc-settings-gear-65" />
-                  <p>
-                    <span className="d-lg-none d-md-block">Account</span>
-                  </p>
-                </Link>
-              </NavItem> */}
+            <Nav className="d-flex">
+              <div className="d-flex">
+                <a href="/dashboard/beacon-search">
+                  <img
+                      src={logo}
+                      alt="react-logo"
+                      width='100px'
+                    />
+                </a>
+                <NavItem>
+                  <NavLink
+                    tag={ReactLink} 
+                    to="/dashboard/beacon-search" 
+                    className="nav-link nav-item d-flex"
+                    activeStyle={{
+                      color: "navy"
+                    }}
+                    >
+                      <p>Beacon Search</p>
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    tag={ReactLink} 
+                    to="/dashboard/help" 
+                    className="nav-link nav-item d-flex"
+                    activeStyle={{
+                      color: "navy"
+                    }}
+                    >
+                      <p>Help</p>
+                  </NavLink>
+                </NavItem>
+              </div>
+              </Nav>
+              <Nav className="d-flex">
+              <div className="d-flex">
+                {this.props.datasetVisible === true ? 
+                  (<div className="d-none">
+                    <DatasetsDropdown updateState={this.props.updateState} />
+                  </div>) :
+                  <></> }
+                {/* Leaving this commented out for now */}
+                <Dropdown
+                  nav
+                  isOpen={this.state.dropdownOpen}
+                  toggle={(e) => this.dropdownToggle(e)}
+                >
+                  <DropdownToggle caret nav>
+                    <i className="nc-icon nc-settings-gear-65" style={{fontSize: '18px'}} />
+                    <p>
+                      <span className="d-lg-none d-md-block">Account</span>
+                    </p>
+                  </DropdownToggle>              
+                  <DropdownMenu right>
+                    <DropdownItem href="/">Return to production dashboard</DropdownItem>
+                    <DropdownItem href="/auth/logout">Logout</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
             </Nav>
           </Collapse>
         </Container>
