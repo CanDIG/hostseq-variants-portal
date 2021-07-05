@@ -87,7 +87,7 @@ export const BeaconFreqTableColumnDefs = [
     field: 'names',
     cellRenderer(param) {
       let rdsRow = '';
-      if(param.data.names){
+      if (param.data.names) {
         (param.data.names).forEach((rds) => { rdsRow += `<a href="https://www.ncbi.nlm.nih.gov/snp/${rds}" target="_blank" rel="noopener">${rds}</a><br/>`; });
       }
       return rdsRow;
