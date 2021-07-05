@@ -41,7 +41,8 @@ class Dashboard extends React.Component {
       patientsList: [],
       datasetVisible: true
     };
-    this.updateState = this.updateState.bind(this)    
+    this.updateState = this.updateState.bind(this);   
+  
     this.mainPanel = React.createRef();
   }
   componentDidMount() {
@@ -76,8 +77,11 @@ class Dashboard extends React.Component {
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
         />
-        <div className="main-panel" ref={this.mainPanel}>
-          <TopBar {...this.props} updateState={this.updateState} datasetVisible = {this.state.datasetVisible} />
+        <div className="main-panel w-100" ref={this.mainPanel}>
+          <TopBar 
+            {...this.props} 
+            updateState={this.updateState} 
+            datasetVisible = {this.state.datasetVisible} />
           <Switch>
             {routes.map((prop, key) => {
               return (
