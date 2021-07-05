@@ -82,7 +82,18 @@ export const BeaconFreqTableColumnDefs = [
       return parseInt(param.data.start, 10) + 1;
     },
   },
-  { headerName: 'Name', field: 'name' },
+  {
+    headerName: 'IDs',
+    field: 'names',
+    cellRenderer(param) {
+      let rdsRow = '';
+      if (param.data.names) {
+        (param.data.names).forEach((rds) => { rdsRow += `<a href="https://www.ncbi.nlm.nih.gov/snp/${rds}" target="_blank" rel="noopener">${rds}</a><br/>`; });
+      }
+      return rdsRow;
+    },
+
+  },
   { headerName: 'Reference Allele', field: 'referenceBases' },
   {
     headerName: 'Alternate Alleles',
@@ -98,7 +109,7 @@ export const BeaconFreqTableColumnDefs = [
     field: 'AF',
     cellRenderer(param) {
       let alleleRow = '';
-      ((param.data.AF).substr(1, param.data.AF.length - 2)).split(',').forEach((allele) => { alleleRow += `${allele}<br/>`; });
+      ((param.data.AF).substr(1, param.data.AF.length - 2)).split(',').forEach((allele) => { alleleRow += `${allele.split(':')[1]}<br/>`; });
       return alleleRow;
     },
   },
