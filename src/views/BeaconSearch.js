@@ -5,7 +5,7 @@ import {
   Col, Card, CardBody,
 } from 'reactstrap';
 import {
-  searchBeaconFreq, searchBeaconRange, searchVariantSets, getReferenceSet,
+  searchBeaconFreq, searchBeaconRange, searchVariantSets, getReferenceSet, getDatasetIdInformation,
 } from '../api/api';
 import BeaconTable from '../components/Tables/BeaconTable';
 
@@ -24,7 +24,8 @@ function BeaconSearch() {
   const [activeColumnDefs, setActiveColumnDefs] = useState([]);
   const [loadingIndicator, setLoadingIndicator] = useState('');
   const [displayBeaconTable, setDisplayBeaconTable] = useState(false);
-  const [overviewMsg, setOverviewMsg] = useState('');
+  const [lastUpdated, setLastUpdated] = useState('');
+  const [genomesIncluded, setGenomesIncluded] = useState('');
   // const [variantSet, setVariantSets] = useState('');
   const [referenceSetName, setReferenceSetName] = useState('');
   const requestModeFunc = { range: searchBeaconRange, freq: searchBeaconFreq };
@@ -45,8 +46,6 @@ function BeaconSearch() {
   useEffect(() => {
     // Hide BeaconTable when datasetId changes
     setDisplayBeaconTable(false);
-    setOverviewMsg('');
-
     // Check for variant and reference name set on datasetId changes
     trackPromise(
       searchVariantSets(datasetId).then((data) => {
@@ -55,6 +54,23 @@ function BeaconSearch() {
       }).catch(() => {
         // setVariantSets('Not Available');
         setReferenceSetName('Not Available');
+        // notify(
+        //   notifyEl,
+        //   'No variants or reference set names were found.',
+        //   'warning',
+        // );
+      }),
+    );
+
+    // Check for variant and reference name set on datasetId changes
+    trackPromise(
+      getDatasetIdInformation(datasetId).then((data) => {
+        const description = data.results.description.split(';');
+        setLastUpdated(description[0]);
+        setGenomesIncluded(description[1]);
+      }).catch(() => {
+        setLastUpdated('Not Available');
+        setGenomesIncluded('');
         // notify(
         //   notifyEl,
         //   'No variants or reference set names were found.',
@@ -176,16 +192,16 @@ function BeaconSearch() {
       <div className="content">
         <NotificationAlert ref={notifyEl} />
         <Row className="justify-content-md-center" style={{ marginBottom: '30px' }}>
-          <Col lg="5" md="5" sm="5">
+          <Col lg="4" md="4" sm="4">
             <Card className="card-stats">
               <CardBody>
                 <Row>
-                  <Col md="4" xs="3">
+                  <Col md="2" xs="1">
                     <div className="icon-big text-center icon-warning">
                       <i className="nc-icon nc-paper text-danger" />
                     </div>
                   </Col>
-                  <Col md="8" xs="9">
+                  <Col md="10" xs="11">
                     <div className="numbers">
                       <p className="card-category">Overview</p>
                       {/* {promiseInProgress === true ? (
@@ -195,7 +211,10 @@ function BeaconSearch() {
                       )}
                       <p /> */}
                       <p style={{ fontSize: '14px' }}>
-                        { overviewMsg }
+                        { lastUpdated }
+                      </p>
+                      <p style={{ fontSize: '14px' }}>
+                        { genomesIncluded }
                       </p>
                     </div>
                   </Col>
