@@ -153,6 +153,9 @@ function searchBeaconFreq(datasetId, start, end, referenceName) {
     if (response.ok) {
       return response.json();
     }
+    if (response.status === 403) {
+      return 403;
+    }
     return {};
   });
 }
@@ -171,6 +174,9 @@ function searchVariantSets(datasetId) {
   }).then((response) => {
     if (response.ok) {
       return response.json();
+    }
+    if (response.status === 403) {
+      return 403;
     }
     return {};
   });

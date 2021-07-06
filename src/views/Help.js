@@ -41,7 +41,11 @@ function Help() {
               <p className="card-text">
                 Currently, you are only allowed to search for up to 5,000 bps at a time.
               </p>
-
+              <b className="card-subtitle mb-2">Is there a limit on my usage of the portal?</b>
+              <p className="card-text">
+                Yes. Your search quota is 500 at any 24-hour period. If you need access to more data,
+                you should contact us.
+              </p>
               <b className="card-subtitle mb-2">
                 When I search with a range with start of 5000 and end of 5500, what variants will get returned?
               </b>
