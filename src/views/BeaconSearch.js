@@ -43,6 +43,20 @@ function BeaconSearch() {
     });
   }
 
+  /*
+  Trigger a notification
+  * @param {string}... message
+  * @param {string}... type
+  * Trigger a notification message of selected type
+  */
+  function notificationHandler(message, type) {
+    notify(
+      notifyEl,
+      message,
+      type,
+    );
+  }
+
   useEffect(() => {
     // Hide BeaconTable when datasetId changes
     setDisplayBeaconTable(false);
@@ -50,7 +64,7 @@ function BeaconSearch() {
     trackPromise(
       searchVariantSets(datasetId).then((data) => {
         if (data === 403) {
-          notificationHandler("You have exceeded your request quota.", "warning");
+          notificationHandler('You have exceeded your request quota.', 'warning');
         }
         // setVariantSets(data.results.total);
         settingReferenceSetName(data.results.variantSets[0].referenceSetId);
@@ -102,20 +116,6 @@ function BeaconSearch() {
       );
     }
     return refNameList;
-  }
-
-  /*
-  Trigger a notification
-  * @param {string}... message
-  * @param {string}... type
-  * Trigger a notification message of selected type
-  */
-  function notificationHandler(message, type) {
-    notify(
-      notifyEl,
-      message,
-      type,
-    );
   }
 
   /*
