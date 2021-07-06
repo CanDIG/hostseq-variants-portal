@@ -194,7 +194,7 @@ class Header extends React.Component {
                     </p>
                   </DropdownToggle>              
                   <DropdownMenu right>
-                    <DropdownItem href="/">Return to production dashboard</DropdownItem>
+                    <DropdownItem href="/">Return to HostSeq website</DropdownItem>
                     <DropdownItem href="/auth/logout">Logout</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>

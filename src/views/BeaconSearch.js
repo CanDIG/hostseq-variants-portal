@@ -43,12 +43,29 @@ function BeaconSearch() {
     });
   }
 
+  /*
+  Trigger a notification
+  * @param {string}... message
+  * @param {string}... type
+  * Trigger a notification message of selected type
+  */
+  function notificationHandler(message, type) {
+    notify(
+      notifyEl,
+      message,
+      type,
+    );
+  }
+
   useEffect(() => {
     // Hide BeaconTable when datasetId changes
     setDisplayBeaconTable(false);
     // Check for variant and reference name set on datasetId changes
     trackPromise(
       searchVariantSets(datasetId).then((data) => {
+        if (data === 403) {
+          notificationHandler('You have exceeded your request quota.', 'warning');
+        }
         // setVariantSets(data.results.total);
         settingReferenceSetName(data.results.variantSets[0].referenceSetId);
       }).catch(() => {
@@ -102,20 +119,6 @@ function BeaconSearch() {
   }
 
   /*
-  Trigger a notification
-  * @param {string}... message
-  * @param {string}... type
-  * Trigger a notification message of selected type
-  */
-  function notificationHandler(message, type) {
-    notify(
-      notifyEl,
-      message,
-      type,
-    );
-  }
-
-  /*
   Stringify the Allele Freq object to be displayed in ag-grid table.
   * @param {array}... records
   * Return a list of records with stringified Allele Freq object
@@ -165,6 +168,14 @@ function BeaconSearch() {
     requestModeFunc[mode](datasetId, start, end, e.target.referenceName.value)
       .then((data) => {
         setLoadingIndicator('');
+
+        if (data === 403) {
+          setDisplayBeaconTable(false);
+          setLoadingIndicator('🛑 You have exceeded your request quota.');
+          notificationHandler('You have exceeded your request quota.', 'warning');
+          return;
+        }
+
         if (data.results.variants.length !== 0) {
           if (mode === 'freq') {
             setActiveColumnDefs(BeaconFreqTableColumnDefs);
@@ -181,9 +192,9 @@ function BeaconSearch() {
         }
       }).catch(() => {
         setDisplayBeaconTable(false);
-        setLoadingIndicator('No variants were found.');
+        setLoadingIndicator('Something else went wrong.');
         setRowData([]);
-        notificationHandler('No variants were found.', 'warning');
+        notificationHandler('Something else went wrong, please refresh the page and try again.', 'warning');
       });
   };
 

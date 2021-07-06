@@ -63,10 +63,12 @@ function DatasetsDropdown({ updateState }) {
     if (!selectedDataset) {
       fetchDatasets()
         .then((data) => {
-          const datasetsList = processDatasetJson(data.results.datasets);
-          setDatasets(datasetsList);
-          setFirstDataset(datasetsList);
-          dispatch({ type: 'SET_DATASETS', payload: datasetsList });
+          if (data.results) {
+            const datasetsList = processDatasetJson(data.results.datasets);
+            setDatasets(datasetsList);
+            setFirstDataset(datasetsList);
+            dispatch({ type: 'SET_DATASETS', payload: datasetsList });
+          }
         });
     }
   });
