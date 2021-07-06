@@ -192,6 +192,22 @@ function getReferenceSet(referenceSetId) {
   });
 }
 
+/*
+Fetch datasetId
+ * @param {string}... datasetId
+*/
+function getDatasetIdInformation(datasetId) {
+  return fetch(`${BASE_URL}/datasets/${datasetId}`, {
+    method: 'get',
+    headers: { 'Content-Type': 'application/json' },
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+    return {};
+  });
+}
+
 export {
   fetchPatients,
   fetchDatasets,
@@ -202,4 +218,5 @@ export {
   searchBeaconFreq,
   searchVariantSets,
   getReferenceSet,
+  getDatasetIdInformation
 };
