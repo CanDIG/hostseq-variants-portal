@@ -21,6 +21,13 @@ const setData = (state, action)=>{
                    ...action.payload
                 }
         }
+        case "SET_DATASET_DESCRIPTION": 
+            return {
+            ...state,
+                description : {
+                   ...action.payload
+                }
+        }
         default:
             return {
                 ...state,
@@ -29,6 +36,10 @@ const setData = (state, action)=>{
                 update: {
                     datasetName: '',
                     datasetId: '',
+                },
+                description: {
+                    lastUpdated: 'Not Available',
+                    genomesIncluded: '',
                 }
             }
     }
