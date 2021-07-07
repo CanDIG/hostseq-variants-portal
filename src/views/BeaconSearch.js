@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Row, Button, Form, FormText, FormGroup, Label, Input,
   Col, Card, CardBody,
@@ -19,13 +19,14 @@ import '../assets/css/VariantsSearch.css';
 
 function BeaconSearch() {
   const events = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const { datasetId } = events.setData.update;
   const [rowData, setRowData] = useState([]);
   const [activeColumnDefs, setActiveColumnDefs] = useState([]);
   const [loadingIndicator, setLoadingIndicator] = useState('');
   const [displayBeaconTable, setDisplayBeaconTable] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState('');
-  const [genomesIncluded, setGenomesIncluded] = useState('');
+  const { lastUpdated, genomesIncluded } = events.setData.description;
   // const [variantSet, setVariantSets] = useState('');
   const [referenceSetName, setReferenceSetName] = useState('');
   const requestModeFunc = { range: searchBeaconRange, freq: searchBeaconFreq };
@@ -62,15 +63,13 @@ function BeaconSearch() {
       }),
     );
 
-    // Check for variant and reference name set on datasetId changes
+    // Check for dataset description for lastUpdated and genomesIncluded
     trackPromise(
       getDatasetIdInformation(datasetId).then((data) => {
         const description = data.results.description.split(';');
-        setLastUpdated(description[0]);
-        setGenomesIncluded(description[1]);
+        dispatch({ type: 'SET_DATASET_DESCRIPTION', payload: { lastUpdated: description[0], genomesIncluded: description[1] } });
       }).catch(() => {
-        setLastUpdated('Not Available');
-        setGenomesIncluded('');
+        dispatch({ type: 'SET_DATASET_DESCRIPTION', payload: { lastUpdated: 'Not Available', genomesIncluded: '' } });
         // notify(
         //   notifyEl,
         //   'No variants or reference set names were found.',
@@ -78,7 +77,7 @@ function BeaconSearch() {
         // );
       }),
     );
-  }, [datasetId]);
+  }, [datasetId, dispatch]);
 
   /*
   Build the dropdown for referenceName
