@@ -40,20 +40,22 @@ function VariantsSearch() {
 
   useEffect(() => {
     // Check for variant and reference name set on datasetId changes
-    trackPromise(
-      searchVariantSets(datasetId).then((data) => {
-        setVariantSets(data.results.total);
-        settingReferenceSetName(data.results.variantSets[0].referenceSetId);
-      }).catch(() => {
-        setVariantSets('Not Available');
-        setReferenceSetName('Not Available');
-        // notify(
-        //   notifyEl,
-        //   'No variants or reference set names were found.',
-        //   'warning',
-        // );
-      }),
-    );
+    if (datasetId) {
+      trackPromise(
+        searchVariantSets(datasetId).then((data) => {
+          setVariantSets(data.results.total);
+          settingReferenceSetName(data.results.variantSets[0].referenceSetId);
+        }).catch(() => {
+          setVariantSets('Not Available');
+          setReferenceSetName('Not Available');
+          // notify(
+          //   notifyEl,
+          //   'No variants or reference set names were found.',
+          //   'warning',
+          // );
+        }),
+      );
+    }
   }, [datasetId]);
 
   const formHandler = (e) => {
