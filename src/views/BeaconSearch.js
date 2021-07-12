@@ -62,38 +62,41 @@ function BeaconSearch() {
     // Hide BeaconTable when datasetId changes
     setDisplayBeaconTable(false);
     // Check for variant and reference name set on datasetId changes
-    trackPromise(
-      searchVariantSets(datasetId).then((data) => {
-        if (data === 403) {
-          notificationHandler('You have exceeded your request quota.', 'warning');
-        }
-        // setVariantSets(data.results.total);
-        settingReferenceSetName(data.results.variantSets[0].referenceSetId);
-      }).catch(() => {
-        // setVariantSets('Not Available');
-        setReferenceSetName('Not Available');
-        // notify(
-        //   notifyEl,
-        //   'No variants or reference set names were found.',
-        //   'warning',
-        // );
-      }),
-    );
+    if (datasetId) {
+      trackPromise(
+        searchVariantSets(datasetId).then((data) => {
+          if (data === 403) {
+            notificationHandler('You have exceeded your request quota.', 'warning');
+          }
+          // setVariantSets(data.results.total);
+          settingReferenceSetName(data.results.variantSets[0].referenceSetId);
+        }).catch(() => {
+          // setVariantSets('Not Available');
+          setReferenceSetName('Not Available');
+          // notify(
+          //   notifyEl,
+          //   'No variants or reference set names were found.',
+          //   'warning',
+          // );
+        }),
+      );
 
-    // Check for dataset description for lastUpdated and genomesIncluded
-    trackPromise(
-      getDatasetIdInformation(datasetId).then((data) => {
-        const description = data.results.description.split(';');
-        dispatch({ type: 'SET_DATASET_DESCRIPTION', payload: { lastUpdated: description[0], genomesIncluded: description[1] } });
-      }).catch(() => {
-        dispatch({ type: 'SET_DATASET_DESCRIPTION', payload: { lastUpdated: 'Not Available', genomesIncluded: '' } });
-        // notify(
-        //   notifyEl,
-        //   'No variants or reference set names were found.',
-        //   'warning',
-        // );
-      }),
-    );
+      // Check for dataset description for lastUpdated and genomesIncluded
+
+      trackPromise(
+        getDatasetIdInformation(datasetId).then((data) => {
+          const description = data.results.description.split(';');
+          dispatch({ type: 'SET_DATASET_DESCRIPTION', payload: { lastUpdated: description[0], genomesIncluded: description[1] } });
+        }).catch(() => {
+          dispatch({ type: 'SET_DATASET_DESCRIPTION', payload: { lastUpdated: 'Not Available', genomesIncluded: '' } });
+          // notify(
+          //   notifyEl,
+          //   'No variants or reference set names were found.',
+          //   'warning',
+          // );
+        }),
+      );
+    }
   }, [datasetId, dispatch]);
 
   /*
