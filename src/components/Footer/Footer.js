@@ -22,6 +22,7 @@ import React from "react";
 import { Container, Row } from "reactstrap";
 // used for making the prop types of this component
 import PropTypes from "prop-types";
+import { versionNumber } from '../../constants/constants';
 
 class Footer extends React.Component {
   render() {
@@ -31,18 +32,9 @@ class Footer extends React.Component {
       >
         <Container fluid={this.props.fluid ? true : false}>
           <Row>
-            <nav className="footer-nav">
-              <ul>
-                <li>
-                  <a href="mailto:candig@bcgsc.ca" target="_blank">
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </nav>
             <div className="credits ml-auto">
               <div className="copyright">
-                &copy; {1900 + new Date().getYear()}, CanDIG Team
+              Version {versionNumber} &copy; {1900 + new Date().getYear()}, CanDIG Team
               </div>
             </div>
           </Row>

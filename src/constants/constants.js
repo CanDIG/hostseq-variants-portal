@@ -5,6 +5,9 @@
 // API URL where the Dashboard get all the data
 const BASE_URL = process.env.REACT_APP_CANDIG_SERVER_DASHBOARD_BASE_URL;
 
+// Version Number
+export const versionNumber = '0.1';
+
 export const CLIN_METADATA = [
   'celltransplants',
   'chemotherapies',
