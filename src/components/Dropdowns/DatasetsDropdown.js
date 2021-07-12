@@ -66,12 +66,14 @@ function DatasetsDropdown({ updateState }) {
           if (data.results) {
             const datasetsList = processDatasetJson(data.results.datasets);
             setDatasets(datasetsList);
-            setFirstDataset(datasetsList);
+            /* eslint-disable */
+            setFirstDataset(datasetsList); // setFirstDataset makes extra calls if added to dependency warning: react-hooks/exhaustive-deps
+            /* eslint-disable */
             dispatch({ type: 'SET_DATASETS', payload: datasetsList });
           }
         });
     }
-  });
+  }, [selectedDataset, dispatch]);
 
   /*
    * Update both parent and local components state
