@@ -31,18 +31,9 @@ class Footer extends React.Component {
       >
         <Container fluid={this.props.fluid ? true : false}>
           <Row>
-            <nav className="footer-nav">
-              <ul>
-                <li>
-                  <a href="mailto:candig@bcgsc.ca" target="_blank">
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </nav>
             <div className="credits ml-auto">
               <div className="copyright">
-                &copy; {1900 + new Date().getYear()}, CanDIG Team
+              Version 0.1 &copy; {1900 + new Date().getYear()}, CanDIG Team
               </div>
             </div>
           </Row>
