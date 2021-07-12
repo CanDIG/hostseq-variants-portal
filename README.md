@@ -1,13 +1,9 @@
-# candig-server-beta-dashboard
+# HostSeq Variants Portal
 
 ### Table of Contents
 - [Installation](#installation)
-- [Usage](#usage)
-  - [Dataset selection](#dataset-selection)
-  - [Available pages](#available-pages)
 - [Contributing to this project](#contributing-to-this-project)
 - [GitHub workflow](#github-workflow)
-
 
 ## Installation
 
@@ -15,8 +11,8 @@ Before installing the Dashboard, make sure you have [Node.js](https://nodejs.org
 
 Clone this repository and start the installation using the following commands:
 ```bash
-git clone git@github.com:CanDIG/candig-server-beta-dashboard.git
-cd candig-server-beta-dashboard
+git clone git@github.com:CanDIG/hostseq-variants-portal.git
+cd hostseq-variants-portal
 npm install
 ```
 That command will install all the dependencies used on the application.
@@ -33,27 +29,9 @@ npm run build
 npx http-server --proxy http://0.0.0.0:8080? ./build/
 ```
 
-## Usage
-
-### Dataset selection
-
-First thing first, select the desirable dataset on the top-right corner. This will load all the information for the charts. Here is a sample:
-
-![](https://raw.githubusercontent.com/CanDIG/candigv2_dashboard/develop/docs/datasets_dropdown.png)
-
-### Available pages
-
-Below there is a list of some (but not limited to) available pages for data visualization. Click on the picture to expand it.
-
-| ![](https://raw.githubusercontent.com/CanDIG/candigv2_dashboard/develop/docs/overview_page.png)        | ![](https://raw.githubusercontent.com/CanDIG/candigv2_dashboard/develop/docs/patients_overview.png) |
-|------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| ![](https://raw.githubusercontent.com/CanDIG/candigv2_dashboard/develop/docs/individuals_overview.png) | ![](https://raw.githubusercontent.com/CanDIG/candigv2_dashboard/develop/docs/gwas_browser.png)      |
-| ![](https://raw.githubusercontent.com/CanDIG/candigv2_dashboard/develop/docs/variants_search.png)      | ![](https://raw.githubusercontent.com/CanDIG/candigv2_dashboard/develop/docs/clinical_metadata.png) |
-| ![](https://raw.githubusercontent.com/CanDIG/candigv2_dashboard/develop/docs/chord_metadata.png)       |   ![](https://raw.githubusercontent.com/CanDIG/candigv2_dashboard/develop/docs/services_status.png)                                                                                                              |
-
 ## Contributing to this project
 
-If you encounter a bug, or have a problem of using the service, please contact us by opening an issue at [issues page](https://github.com/CanDIG/candigv2_dashboard/issues)
+If you encounter a bug, or have a problem of using the service, please contact us by opening an issue at [issues page](https://github.com/CanDIG/hostseq-variants-portal/issues)
 
 ### GitHub workflow
 
