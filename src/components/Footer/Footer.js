@@ -22,6 +22,7 @@ import React from "react";
 import { Container, Row } from "reactstrap";
 // used for making the prop types of this component
 import PropTypes from "prop-types";
+import { versionNumber } from '../../constants/constants';
 
 class Footer extends React.Component {
   render() {
@@ -33,7 +34,7 @@ class Footer extends React.Component {
           <Row>
             <div className="credits ml-auto">
               <div className="copyright">
-              Version 0.1 &copy; {1900 + new Date().getYear()}, CanDIG Team
+              Version {versionNumber} &copy; {1900 + new Date().getYear()}, CanDIG Team
               </div>
             </div>
           </Row>
