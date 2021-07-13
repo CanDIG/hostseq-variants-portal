@@ -104,7 +104,7 @@ class Header extends React.Component {
   }
   
   render() {
-    const session_id = document.cookie != null ? document.cookie.split("session_id=")[1] : undefined;
+    const session_id = document.cookie != "" ? document.cookie.split("session_id=")[1] : undefined;
     const payload = session_id ? session_id.split('.')[1]: undefined;
     const username = payload ? (JSON.parse(atob(payload))).preferred_username : undefined;
     return (
