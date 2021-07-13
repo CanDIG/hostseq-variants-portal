@@ -44,7 +44,7 @@ function Help() {
               <b className="card-subtitle mb-2">Is there a limit on my usage of the portal?</b>
               <p className="card-text">
                 Yes. Your search quota is 500 at any 24-hour period. If you need access to more data,
-                you should contact us.
+                you should contact us at info@cgen.ca.
               </p>
               <b className="card-subtitle mb-2">
                 When I search with a range with start of 5000 and end of 5500, what variants will get returned?
@@ -70,7 +70,7 @@ function Help() {
                 I have other questions that&apos;s not answered here.
               </b>
               <p className="card-text">
-                Please reach out to us at admin@example.ca
+                Please reach out to us at info@cgen.ca
               </p>
             </CardBody>
           </Card>
