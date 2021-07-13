@@ -52,6 +52,7 @@ class Header extends React.Component {
     this.dropdownToggle = this.dropdownToggle.bind(this);
     this.sidebarToggle = React.createRef();
   }
+    
   toggle() {
     if (this.state.isOpen) {
       this.setState({
@@ -103,6 +104,9 @@ class Header extends React.Component {
   }
   
   render() {
+    const session_id = document.cookie != null ? document.cookie.split("session_id=")[1] : undefined;
+    const payload = session_id ? session_id.split('.')[1]: undefined;
+    const username = payload ? (JSON.parse(atob(payload))).preferred_username : undefined;
     return (
       // add or remove classes depending if we are on full-screen-maps page or not
       <Navbar
@@ -188,10 +192,12 @@ class Header extends React.Component {
                   toggle={(e) => this.dropdownToggle(e)}
                 >
                   <DropdownToggle caret nav>
+                    { username &&
+                      <p className="pr-2">
+                        {username}
+                      </p>
+                    }
                     <i className="nc-icon nc-settings-gear-65" style={{fontSize: '18px'}} />
-                    <p>
-                      <span className="d-lg-none d-md-block">Account</span>
-                    </p>
                   </DropdownToggle>              
                   <DropdownMenu right>
                     <DropdownItem href="/">Return to HostSeq website</DropdownItem>
