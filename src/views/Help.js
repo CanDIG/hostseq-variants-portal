@@ -70,7 +70,7 @@ function Help() {
                 I have other questions that&apos;s not answered here.
               </b>
               <p className="card-text">
-                Please reach out to us at info@cgen.ca.
+                Please reach out to us at <a href = "mailto: info@cgen.ca">info@cgen.ca</a>.
               </p>
             </CardBody>
           </Card>
