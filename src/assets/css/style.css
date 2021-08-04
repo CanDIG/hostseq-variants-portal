@@ -8,14 +8,6 @@
     .navbar a:not(.btn):not(.dropdown-item) {
         color: #000000;
     }
-
-}
-
-.navbar .navbar-toggler {
-    width: 37px;
-    vertical-align: middle;
-    outline: 0;
-    cursor: pointer;
 }
 
 .bg-topper {
