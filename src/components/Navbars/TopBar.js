@@ -33,12 +33,12 @@ import {
   Container
 } from "reactstrap";
 
-
 import logo from "../../assets/img/hostseq_logo.png"
 
-import routes from "routes.js";
-
 import DatasetsDropdown from "../Dropdowns/DatasetsDropdown.js";
+
+//import custom css
+import '../../assets/css/style.css'
 
 class Header extends React.Component {
   constructor(props) {
@@ -46,106 +46,118 @@ class Header extends React.Component {
     this.state = {
       isOpen: false,
       dropdownOpen: false,
-      color: "transparent"
+      color: "transparent",
+      mobile: 'd-flex'
     };
     this.toggle = this.toggle.bind(this);
     this.dropdownToggle = this.dropdownToggle.bind(this);
-    this.sidebarToggle = React.createRef();
-  }
-    
-  toggle() {
-    if (this.state.isOpen) {
-      this.setState({
-        color: "transparent",
-      });
-    } else {
-      this.setState({
-        color: "dark",
-      });
-    }
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
-  }
-  dropdownToggle(e) {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen,
-    });
   }
 
-  openSidebar() {
-    document.documentElement.classList.toggle("nav-open");
-    this.sidebarToggle.current.classList.toggle("toggled");
-  }
-  // function that adds color dark/transparent to the navbar on resize (this is for the collapse)
-  updateColor() {
-    if (window.innerWidth < 993 && this.state.isOpen) {
-      this.setState({
-        color: "dark",
-      });
-    } else {
-      this.setState({
-        color: "transparent",
-      });
-    }
-  }
-  componentDidMount() {
-    window.addEventListener("resize", this.updateColor.bind(this));
-  }
-  componentDidUpdate(e) {
-    if (
-      window.innerWidth < 993 &&
-      e.history.location.pathname !== e.location.pathname &&
-      document.documentElement.className.indexOf("nav-open") !== -1
-    ) {
-      document.documentElement.classList.toggle("nav-open");
-      this.sidebarToggle.current.classList.toggle("toggled");
-    }
-  }
   
+    toggle() {
+      if (this.state.isOpen) {
+        this.setState({
+          color: "transparent",
+        });
+      } else {
+        this.setState({
+          color: "topper",
+        });
+      }
+      this.setState({
+        isOpen: !this.state.isOpen,
+      });
+    }
+    dropdownToggle(e) {
+      this.setState({
+        dropdownOpen: !this.state.dropdownOpen,
+      });
+    }
+  
+
+    // function that adds color to the navbar on resize (this is for the collapse)
+    updateColor() {
+      if (window.innerWidth < 575 && this.state.isOpen) {
+        this.setState({
+          color: "topper",
+        });
+      } else {
+        this.setState({
+          color: "transparent",
+        });
+      }
+    }
+
+    componentDidMount() {
+      window.addEventListener("resize", () =>{ 
+        this.updateColor.bind(this);
+        this.setState({
+          isMobile: window.innerWidth < 575
+        });
+      }, false);
+
+      this.setState({
+        isMobile: window.innerWidth < 575
+      });
+    
+    }
+
+    componentDidUpdate(e) {
+      if (
+        window.innerWidth < 575 &&
+        e.history.location.pathname !== e.location.pathname &&
+        document.documentElement.className.indexOf("nav-open") !== -1
+      ) {
+        document.documentElement.classList.toggle("nav-open");
+        this.sidebarToggle.current.classList.toggle("toggled");
+      }
+      
+    }
+
+
   render() {
     const session_id = document.cookie != "" ? document.cookie.split("session_id=")[1] : undefined;
     const payload = session_id ? session_id.split('.')[1]: undefined;
     const username = payload ? (JSON.parse(atob(payload))).preferred_username : undefined;
+    
+    const mobile = this.state.isMobile ? 'd-flex flex-column' : 'd-flex';
+    const desktopLogo = this.state.isMobile ? 'd-none': '';
     return (
       // add or remove classes depending if we are on full-screen-maps page or not
       <Navbar
         color={
-          this.props.location.pathname.indexOf("full-screen-maps") !== -1
-            ? "dark"
+          this.state.isMobile
+            ? "topper"
             : this.state.color
         }
-        expand="lg"
+        expand="sm"
         className={
-          this.props.location.pathname.indexOf("full-screen-maps") !== -1
+          this.state.isMobile
             ? "navbar-absolute fixed-top"
             : "navbar-absolute fixed-top " +
               (this.state.color === "transparent" ? "navbar-transparent " : "")
         }
       >
-        <Container fluid className="d-flex justify-content-between">
-          <div className="navbar-wrapper">
-            <div className="navbar-toggle">
-              <button
-                type="button"
-                ref={this.sidebarToggle}
-                className="navbar-toggler"
-                onClick={() => this.openSidebar()}
-              >
-              </button>
-            </div>
-   
+        <Container fluid className="d-flex">
+          <div>       
+            <NavbarToggler onClick={this.toggle} style={{padding: '0px', height: 'auto'}} className="navbar-light mr-1"/>
+    
+              <a href="/dashboard/beacon-search" className="navbar-toggler">
+                <img
+                    src={logo}
+                    alt="react-logo"
+                    width='100px'
+                  />
+              </a> 
           </div>
-        
-          <NavbarToggler onClick={this.toggle}/>
           <Collapse
             isOpen={this.state.isOpen}
             navbar
             className="justify-content-between"
           >
             <Nav className="d-flex">
-              <div className="d-flex">
-                <a href="/dashboard/beacon-search">
+              <div className={mobile}>
+                <a href="/dashboard/beacon-search" className={desktopLogo}>
                   <img
                       src={logo}
                       alt="react-logo"

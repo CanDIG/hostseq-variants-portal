@@ -1,0 +1,26 @@
+/* Overwrite the defaults styling */ 
+
+/* Mobile Styling */
+@media only screen and (max-width: 575px) {
+    .navbar a.dropdown-item {
+        color: #000000;
+    }
+    .navbar a:not(.btn):not(.dropdown-item) {
+        color: #000000;
+    }
+
+}
+
+.navbar .navbar-toggler {
+    width: 37px;
+    vertical-align: middle;
+    outline: 0;
+    cursor: pointer;
+}
+
+.bg-topper {
+    background-color: #ebeae6;
+
+}
+
+
