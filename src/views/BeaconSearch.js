@@ -140,7 +140,7 @@ function BeaconSearch() {
   * Return false if the range is > 5000, true otherwise.
   */
   function validateForm(start, end) {
-    if ((Number(end) - Number(start)) > 5000) {
+    if ((Number(end) - Number(start)) > 5001) {
       notificationHandler('The maximum range you could search for is 5000 bps.', 'warning');
       setDisplayBeaconTable(false);
       return false;
