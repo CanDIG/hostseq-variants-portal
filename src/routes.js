@@ -42,7 +42,7 @@ const routes = [
     name: 'ErrorPageNotFound',
     icon: 'nc-icon nc-alert-circle-i',
     component: ErrorPageNotFound,
-    layout: '/',
+    layout: '/dashboard',
   },
 
 ];
