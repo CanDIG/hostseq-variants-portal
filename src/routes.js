@@ -19,6 +19,7 @@
 */
 import BeaconSearch from './views/BeaconSearch';
 import Help from './views/Help';
+import ErrorPageNotFound from 'views/ErrorPageNotFound';
 
 
 const routes = [
@@ -36,5 +37,13 @@ const routes = [
     component: Help,
     layout: '/dashboard',
   },
+  {
+    path: '*',
+    name: 'ErrorPageNotFound',
+    icon: 'nc-icon nc-alert-circle-i',
+    component: ErrorPageNotFound,
+    layout: '/dashboard',
+  },
+
 ];
 export default routes;
