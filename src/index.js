@@ -31,6 +31,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { loadState, saveState } from "store/sessionStorage";
 import reducer from 'store/reducer';
+import ErrorPageNotFound from 'views/ErrorPageNotFound';
 
 const persistentState = loadState();
 const store = createStore(reducer, persistentState);
@@ -49,7 +50,7 @@ ReactDOM.render(
   <Provider store={store}>
       <Router history={hist}>
         <Switch>
-          <Route exact path="/v2/dashboard" render={() => <Redirect to="/v2/dashboard/overview" />} />
+          <Route exact path="/dashboard" render={() => <Redirect to="/dashboard/beacon-search" />} />
             {routes.map((prop, key) => {
               return (
                 <Route
