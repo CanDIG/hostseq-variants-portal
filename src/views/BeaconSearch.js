@@ -158,7 +158,7 @@ function BeaconSearch() {
   const formHandler = (e) => {
     e.preventDefault(); // Prevent form submission
     const mode = 'freq';
-    const start = e.target.start.value - 1;
+    const start = (e.target.start.value === '1' ? '1' : String(e.target.start.value - 1));
     const end = e.target.end.value;
 
     if (validateForm(start, end) === false) {
