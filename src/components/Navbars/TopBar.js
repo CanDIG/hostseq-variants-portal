@@ -142,7 +142,7 @@ class Header extends React.Component {
           <div>       
             <NavbarToggler onClick={this.toggle} style={{padding: '0px', height: 'auto'}} className="navbar-light mr-1"/>
     
-              <a href="/dashboard/beacon-search" className="navbar-toggler">
+              <a href="/dashboard/variants-search" className="navbar-toggler">
                 <img
                     src={logo}
                     alt="react-logo"
@@ -157,7 +157,7 @@ class Header extends React.Component {
           >
             <Nav className="d-flex">
               <div className={mobile}>
-                <a href="/dashboard/beacon-search" className={desktopLogo}>
+                <a href="/dashboard/variants-search" className={desktopLogo}>
                   <img
                       src={logo}
                       alt="react-logo"
@@ -167,13 +167,13 @@ class Header extends React.Component {
                 <NavItem>
                   <NavLink
                     tag={ReactLink} 
-                    to="/dashboard/beacon-search" 
+                    to="/dashboard/variants-search"
                     className="nav-link nav-item d-flex"
                     activeStyle={{
                       color: "navy"
                     }}
                     >
-                      <p>Beacon Search</p>
+                      <p>Variants Search</p>
                   </NavLink>
                 </NavItem>
                 <NavItem>

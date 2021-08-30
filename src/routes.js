@@ -17,17 +17,17 @@
   included in all copies or substantial portions of the Software.
 
 */
-import BeaconSearch from './views/BeaconSearch';
+import VariantsSearch from './views/VariantsSearch';
 import Help from './views/Help';
 import ErrorPageNotFound from 'views/ErrorPageNotFound';
 
 
 const routes = [
   {
-    path: '/beacon-search',
-    name: 'Beacon Search',
+    path: '/variants-search',
+    name: 'Variants Search',
     icon: 'nc-icon nc-zoom-split',
-    component: BeaconSearch,
+    component: VariantsSearch,
     layout: '/dashboard',
   },
   {

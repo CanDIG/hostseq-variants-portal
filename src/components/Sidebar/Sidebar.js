@@ -66,7 +66,7 @@ class Sidebar extends React.Component {
               /> */}
             </div>
           </a>
-          <a href="/dashboard/beacon-search" className="simple-text logo-normal">
+          <a href="/dashboard/variants-search" className="simple-text logo-normal">
             Variants Portal
           </a>
         </div>
