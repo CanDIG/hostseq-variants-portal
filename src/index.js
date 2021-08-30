@@ -50,7 +50,7 @@ ReactDOM.render(
   <Provider store={store}>
       <Router history={hist}>
         <Switch>
-          <Route exact path="/dashboard" render={() => <Redirect to="/dashboard/beacon-search" />} />
+          <Route exact path="/dashboard" render={() => <Redirect to="/dashboard/variants-search" />} />
             {routes.map((prop, key) => {
               return (
                 <Route

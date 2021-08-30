@@ -16,7 +16,7 @@ function ErrorPageNotFound() {
           <b> not found</b>
         </h5>
         <div className="d-flex justify-content-around mt-3">
-          <Link to="/dashboard/beacon-search" className="d-flex justify-content-center navy-button p-2 mr-3 font-gothic font-weight-bold">Beacon</Link>
+          <Link to="/dashboard/variants-search" className="d-flex justify-content-center navy-button p-2 mr-3 font-gothic font-weight-bold">Variants Search</Link>
           <Link to="/dashboard/help" className="d-flex justify-content-center outline-navy-button p-2 mr-3 text-navy font-gothic font-weight-bold">Help</Link>
         </div>
       </div>
