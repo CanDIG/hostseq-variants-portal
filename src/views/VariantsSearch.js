@@ -7,7 +7,7 @@ import {
 import {
   searchBeaconFreq, searchBeaconRange, searchVariantSets, getReferenceSet, getDatasetIdInformation,
 } from '../api/api';
-import BeaconTable from '../components/Tables/BeaconTable';
+import VariantsTable from '../components/Tables/VariantsTable';
 
 import { notify, NotificationAlert } from '../utils/alert';
 import { trackPromise } from '../components/LoadingIndicator/LoadingIndicator';
@@ -25,7 +25,7 @@ function VariantsSearch() {
   const [rowData, setRowData] = useState([]);
   const [activeColumnDefs, setActiveColumnDefs] = useState([]);
   const [loadingIndicator, setLoadingIndicator] = useState('');
-  const [displayBeaconTable, setDisplayBeaconTable] = useState(false);
+  const [displayVariantsTable, setDisplayVariantsTable] = useState(false);
   const { lastUpdated, genomesIncluded } = events.setData.description;
   // const [variantSet, setVariantSets] = useState('');
   const [referenceSetName, setReferenceSetName] = useState('');
@@ -60,7 +60,7 @@ function VariantsSearch() {
 
   useEffect(() => {
     // Hide BeaconTable when datasetId changes
-    setDisplayBeaconTable(false);
+    setDisplayVariantsTable(false);
     // Check for variant and reference name set on datasetId changes
     if (datasetId) {
       trackPromise(
@@ -142,13 +142,13 @@ function VariantsSearch() {
   function validateForm(start, end) {
     if ((Number(end) - Number(start)) > 5001) {
       notificationHandler('The maximum range you could search for is 5000 bps.', 'warning');
-      setDisplayBeaconTable(false);
+      setDisplayVariantsTable(false);
       return false;
     }
 
     if (Number(end) < Number(start) + 1) {
       notificationHandler('End cannot be smaller than start.', 'warning');
-      setDisplayBeaconTable(false);
+      setDisplayVariantsTable(false);
       return false;
     }
 
@@ -172,7 +172,7 @@ function VariantsSearch() {
         setLoadingIndicator('');
 
         if (data === 403) {
-          setDisplayBeaconTable(false);
+          setDisplayVariantsTable(false);
           setLoadingIndicator('🛑 You have exceeded your request quota.');
           notificationHandler('You have exceeded your request quota.', 'warning');
           return;
@@ -186,14 +186,14 @@ function VariantsSearch() {
             setActiveColumnDefs(BeaconRangeTableColumnDefs);
             setRowData(data.results.variants);
           }
-          setDisplayBeaconTable(true);
+          setDisplayVariantsTable(true);
         } else {
-          setDisplayBeaconTable(false);
+          setDisplayVariantsTable(false);
           setLoadingIndicator('❌ No variants were found.');
           notificationHandler('No variants were found.', 'warning');
         }
       }).catch(() => {
-        setDisplayBeaconTable(false);
+        setDisplayVariantsTable(false);
         setLoadingIndicator('Something else went wrong.');
         setRowData([]);
         notificationHandler('Something else went wrong, please refresh the page and try again.', 'warning');
@@ -314,7 +314,7 @@ function VariantsSearch() {
           </div>
         </Row>
 
-        {displayBeaconTable ? <BeaconTable columnDefs={activeColumnDefs} rowData={rowData} datasetId={datasetId} /> : null }
+        {displayVariantsTable ? <VariantsTable columnDefs={activeColumnDefs} rowData={rowData} datasetId={datasetId} /> : null }
 
       </div>
     </>
