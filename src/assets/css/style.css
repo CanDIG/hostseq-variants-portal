@@ -33,7 +33,7 @@
     border-radius: 4px;
     color: white;
     text-decoration: none;
-    width: 7em;
+    width: 9em;
 }
 .outline-navy-button, .navy-button:hover, .navy-button:hover a, .navy-button:active a  {
     background: white;
@@ -43,6 +43,6 @@
     border-radius: 4px;
     color:#283E7D;
     text-decoration: none;
-    width: 7em;
+    width: 9em;
 }
 
