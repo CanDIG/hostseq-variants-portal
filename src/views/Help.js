@@ -26,10 +26,10 @@ function Help() {
                 have a presence at this position. In most cases, it would be an SNP, sometimes it would be short indels.
               </p>
 
-              <b className="card-subtitle mb-2">I want to get a list of variants from position 54,000 to 54,900 on Mitochondria genome.</b>
+              <b className="card-subtitle mb-2">I want to get a list of variants from position 14,000 to 14,500 on Mitochondria genome.</b>
               <p className="card-text">
-                To get a list of variants at this range, please select MT from the Chromosome dropdown, put 54000 as the start, and
-                54900 as the end. The server will return a list of variants in this range.
+                To get a list of variants at this range, please select MT from the Chromosome dropdown, put 14000 as the start, and
+                14500 as the end. The server will return a list of variants in this range.
               </p>
             </CardBody>
           </Card>
@@ -80,7 +80,7 @@ function Help() {
               <h5 className="card-title">Terminolgies</h5>
               <b className="card-subtitle mb-2">Internal Frequency</b>
               <p className="card-text">
-                Internal frequencies indicate the prevalence of alleles in our dataset, rounded up to the nearest 10 percent.
+                Internal frequencies indicate the prevalence of alternate allele(s) in our dataset, rounded up to the nearest 10 percent.
               </p>
 
               <b className="card-subtitle mb-2">Position</b>
