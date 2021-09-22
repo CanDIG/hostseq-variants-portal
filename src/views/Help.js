@@ -15,6 +15,28 @@ function Help() {
 
           <Card className="m-6">
             <CardBody>
+              <h5 className="card-title">About Us</h5>
+              <p className="card-text">
+                This application hosts genomic variants data from
+                {' '}
+                <b>HostSeq</b>
+                , a Canada-wide initiative
+                that sequences genomes of 10,000 Canadians to help understand the genomic architecture of the host response to COVID-19.
+              </p>
+              Click
+              {' '}
+              <a target="_blank" rel="noopener noreferrer" href="http://www.cgen.ca/project-overview">here</a>
+              {' '}
+              to learn more about HostSeq, or
+              {' '}
+              <a target="_blank" rel="noopener noreferrer" href="http://www.cgen.ca/daco-main">here</a>
+              {' '}
+              to apply for Data Access.
+            </CardBody>
+          </Card>
+
+          <Card className="m-6">
+            <CardBody>
               <h5 className="card-title">Example Scenarios</h5>
               <b className="card-subtitle mb-2">
                 I want to find out if a SNP exists at
@@ -44,7 +66,10 @@ function Help() {
               <b className="card-subtitle mb-2">Is there a limit on my usage of the portal?</b>
               <p className="card-text">
                 Yes. Your search quota is 500 at any 24-hour period. If you need access to more data,
-                you should contact us at hostseq.support@cgen.ca
+                you should contact us at
+                {' '}
+                <a href="mailto:hostseq.support@cgen.ca">hostseq.support@cgen.ca</a>
+
               </p>
               <b className="card-subtitle mb-2">
                 When I search with a range with start of 5000 and end of 5500, what variants will get returned?
@@ -67,10 +92,19 @@ function Help() {
                 We round up the internal frequency to the nearest 10%.
               </p>
               <b className="card-subtitle mb-2">
+                Can I sort on the columns of the table?
+              </b>
+              <p className="card-text">
+                You may sort on Position, IDs, Reference and Alternate Alleles. You cannot sort on
+                Internal Frequency at this time.
+              </p>
+              <b className="card-subtitle mb-2">
                 I have other questions that&apos;s not answered here.
               </b>
               <p className="card-text">
-                Please reach out to us at hostseq.support@cgen.ca
+                Please reach out to us at
+                {' '}
+                <a href="mailto:hostseq.support@cgen.ca">hostseq.support@cgen.ca</a>
               </p>
             </CardBody>
           </Card>
@@ -90,6 +124,30 @@ function Help() {
             </CardBody>
           </Card>
 
+          <Card className="m-6">
+            <CardBody>
+              <h5 className="card-title">Technologies</h5>
+              <p className="card-text">Note: At this time, APIs are not directly available to the users.</p>
+
+              <b className="card-subtitle mb-2">CanDIG Variants API</b>
+              <p className="card-text">
+                This application is powered by the
+                {' '}
+                <a target="_blank" rel="noopener noreferrer" href="https://www.distributedgenomics.ca/">CanDIG</a>
+                {' '}
+                APIs.
+              </p>
+
+              <b className="card-subtitle mb-2">GA4GH Beacon API</b>
+              <p className="card-text">
+                This application supports querying via the
+                {' '}
+                <a target="_blank" rel="noopener noreferrer" href="https://beacon-project.io/">GA4GH Beacon</a>
+                {' '}
+                APIs.
+              </p>
+            </CardBody>
+          </Card>
         </div>
 
       </div>
