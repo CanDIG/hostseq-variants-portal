@@ -110,6 +110,7 @@ export const BeaconFreqTableColumnDefs = [
   {
     headerName: 'Internal Frequency',
     field: 'AF',
+    sortable: false,
     cellRenderer(param) {
       let alleleRow = '';
       ((param.data.AF).substr(1, param.data.AF.length - 2)).split(',').forEach((allele) => { alleleRow += `${allele.split(':')[1]}<br/>`; });
